@@ -15,7 +15,6 @@ require('lazy').setup({
   -- Use `opts = {}` to force a plugin to be loaded.
   --
 
-
   -- modular approach: using `require 'path/name'` will
   -- include a plugin definition from file lua/path/name.lua
 
@@ -40,7 +39,7 @@ require('lazy').setup({
   require 'kickstart/plugins/treesitter',
 
   require 'kickstart.plugins.debug',
-  require 'kickstart.plugins.indent_line',
+  -- require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
