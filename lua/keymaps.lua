@@ -1,35 +1,62 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
+vim.keymap.set("i", "<M-o>", "<Esc>o")
+vim.keymap.set("i", "<C-j>", "<Down>")
+vim.keymap.set("i", "jj", "<Esc>")
+vim.keymap.set("i", ":w", "<Esc>:w<cr>")
+vim.keymap.set("c", "<C-A>", "<Home>")
+vim.keymap.set("c", "<C-E>", "<End>")
+vim.keymap.set("c", "<C-L>", "<Right>")
+vim.keymap.set("c", "<C-H>", "<Left>")
+vim.keymap.set("c", "<C-B>", "<S-Left>")
+vim.keymap.set("c", "<C-W>", "<S-Right>")
+vim.keymap.set("c", "<C-p>", "<Up>")
+vim.keymap.set("c", "<C-n>", "<Down>")
+vim.keymap.set("n", "/", "/\\v")
+vim.keymap.set("v", "/", "/\\v")
+vim.keymap.set("n", "j", "gj")
+vim.keymap.set("n", "k", "gk")
 
--- Clear highlights on search when pressing <Esc> in normal mode
---  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set("n", "<C-h>", "<C-w>h")
+vim.keymap.set("n", "<C-j>", "<C-w>j")
+vim.keymap.set("n", "<C-k>", "<C-w>k")
+vim.keymap.set("n", "<C-l>", "<C-w>l")
 
--- Diagnostic keymaps
+
+vim.keymap.set("n", "<leader><space>", ":noh<cr>")
+vim.keymap.set("n", "<leader>v", "V`]")
+vim.keymap.set("n", "<leader>ev", "<C-w><C-v><C-l>:e ~/.vimrc<cr>")
+vim.keymap.set("n", "<Leader>e",  ":e <C-R>=expand('%:p:h') . '/' <cr>")
+vim.keymap.set("c", "%%", "<C-R>=expand('%:h').'/'<cr>")
+vim.keymap.set("n", "<leader>p", ":bufdo set ei-=Syntax | do Syntax | hardcopy! >%:t.ps")
+
+-- Git
+vim.keymap.set("n", "<leader>gs", "Git status<cr>")
+vim.keymap.set("n", "<leader>gd", ":Gdiff<cr>")
+vim.keymap.set("n", "<leader>gb", ":Git blame<cr>")
+vim.keymap.set("n", "<leader>gl", ":Glog<cr>")
+vim.keymap.set("n", "<leader>gp", ":Git push<cr>")
+vim.keymap.set("n", "<leader>gg", ":Ggrep <C-R><C-W>")
+vim.keymap.set("n", "<leader>i", ":sp ~/bin/dotfiles/vim/vim-quick.md<cr>")
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+-- Replace repeat last substitution to include flags
+vim.keymap.set("n", "&", ":&&<cr>")
+vim.keymap.set("x", "&", ":&&<cr>")
 
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+-- TComment Options
+vim.keymap.set("n",  "<Leader>c", ":TComment<cr>")
+vim.keymap.set("v",  "<Leader>c", ":TComment<cr>")
 
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set("n", "<leader>u", ":UndotreeToggle<cr>")
+vim.keymap.set("n", "<leader>w", ":StripTrailingWhitespace<cr>")
+
+-- Visual tabbing should stay in visual
+vim.keymap.set("v", ">", ">gv")
+vim.keymap.set("v", "<", "<gv")
+
+-- Copy filename to clipboard
+vim.keymap.set("n", "<leader>g", ':let @+=expand("%")<cr>')
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
