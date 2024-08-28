@@ -235,6 +235,16 @@ return {
             },
           },
         },
+        phpactor = {
+          cmd = { 'phpactor', 'language-server' },
+          filetypes = { 'php' },
+          root_dir = function(pattern)
+            local util = require 'lspconfig.util'
+            local root = util.root_pattern('.phpactor.yml', 'composer.json')(pattern)
+
+            return root
+          end,
+        },
       }
 
       -- Ensure the servers and tools above are installed
