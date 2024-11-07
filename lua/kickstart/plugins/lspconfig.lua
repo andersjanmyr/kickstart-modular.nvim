@@ -235,15 +235,28 @@ return {
             },
           },
         },
-        phpactor = {
-          cmd = { 'phpactor', 'language-server' },
+        intelephense = {
           filetypes = { 'php' },
           root_dir = function(pattern)
+            local cwd = vim.uv.cwd()
             local util = require 'lspconfig.util'
-            local root = util.root_pattern('.phpactor.yml', 'composer.json')(pattern)
+            local root = util.root_pattern('.phpactor.yml', 'composer.json', '.git')(pattern)
 
-            return root
+            -- prefer cwd if root is a descendant
+            return util.path.is_descendant(cwd, root) and cwd or root
           end,
+
+          -- See https://github.com/bmewburn/intelephense-docs#configuration-options
+          settings = {
+            intelephense = {
+              format = {
+                braces = 'k&r',
+              },
+              environment = {
+                phpVersion = '8.3.0',
+              },
+            },
+          },
         },
       }
 
