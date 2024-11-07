@@ -23,6 +23,7 @@ return {
           c = true,
           cpp = true,
           ruby = true,
+          erlang = true,
         }
         return {
           timeout_ms = 500,
@@ -31,7 +32,7 @@ return {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        ruby = { 'rubyfmt' },
+        json = { 'jq' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
