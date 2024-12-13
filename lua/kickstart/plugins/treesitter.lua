@@ -15,8 +15,8 @@ return {
         additional_vim_regex_highlighting = { 'ruby' },
       },
       indent = { enable = true, disable = { 'ruby' } },
-    incremental_selection = { enable = true },
-    textobjects = { enable = true },
+      incremental_selection = { enable = true },
+      textobjects = { enable = true },
     },
     config = function(_, opts)
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`

@@ -135,7 +135,7 @@ return {
               group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
               callback = function(event2)
                 vim.lsp.buf.clear_references()
-                vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+                vim.api.nvim_clear_autocmds({ group = 'kickstart-lsp-highlight', buffer = event2.buf })
               end,
             })
           end
@@ -146,7 +146,7 @@ return {
           -- This may be unwanted, since they displace some of your code
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             map('<leader>th', function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
             end, '[T]oggle Inlay [H]ints')
           end
         end,
@@ -206,28 +206,34 @@ return {
             },
           },
         },
-        intelephense = {
+        phpactor = {
+          cmd = { 'phpactor', 'language-server' },
           filetypes = { 'php' },
           root_dir = function(pattern)
             local cwd = vim.uv.cwd()
-            local util = require 'lspconfig.util'
+            local util = require('lspconfig.util')
             local root = util.root_pattern('.phpactor.yml', 'composer.json', '.git')(pattern)
 
             -- prefer cwd if root is a descendant
             return util.path.is_descendant(cwd, root) and cwd or root
           end,
 
-          -- See https://github.com/bmewburn/intelephense-docs#configuration-options
           settings = {
-            intelephense = {
-              format = {
-                braces = 'k&r',
-              },
-              environment = {
-                phpVersion = '8.3.0',
+            phpactor = {
+              language_server_phpstan = {
+                enabled = true,
               },
             },
           },
+        },
+        pyright = {
+          cmd = { 'pyright-langserver', '--stdio' },
+          filetypes = { 'python' },
+          root_dir = function(pattern)
+            local util = require('lspconfig.util')
+            return util.root_pattern('Pipfile')(pattern)
+          end,
+          single_file_support = false,
         },
       }
 
@@ -248,9 +254,9 @@ return {
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
       })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
-      require('mason-lspconfig').setup {
+      require('mason-lspconfig').setup({
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
@@ -261,7 +267,7 @@ return {
             require('lspconfig')[server_name].setup(server)
           end,
         },
-      }
+      })
     end,
   },
 }
