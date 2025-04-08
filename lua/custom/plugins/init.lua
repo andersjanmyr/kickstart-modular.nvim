@@ -9,6 +9,7 @@ return {
   'axelf4/vim-strip-trailing-whitespace',
   'editorconfig/editorconfig-vim',
   'godlygeek/tabular',
+  'fatih/vim-go',
   'hashivim/vim-terraform',
   'jose-elias-alvarez/typescript.nvim',
   'mbbill/undotree',
