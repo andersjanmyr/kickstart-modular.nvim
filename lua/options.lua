@@ -26,8 +26,8 @@ vim.o.showmode = false
 --  See `:help 'clipboard'`
 vim.o.background = 'dark'
 vim.o.backup = true -- make backup files
-vim.o.backupdir = os.getenv 'HOME' .. '/.vim/backup' -- where to put backup files
-vim.o.directory = os.getenv 'HOME' .. '/.vim/swap' -- where to put swap files
+vim.o.backupdir = os.getenv('HOME') .. '/.vim/backup' -- where to put backup files
+vim.o.directory = os.getenv('HOME') .. '/.vim/swap' -- where to put swap files
 vim.o.cmdheight = 2 -- Make room for larger commands without Enter
 vim.schedule(function()
   vim.o.clipboard = 'unnamedplus'
@@ -55,7 +55,7 @@ vim.o.lbr = true
 vim.o.compatible = false -- explicitly get out of vi-compatible mode
 vim.o.exrc = false -- don't use local version of .(g)vimrc, .exrc
 vim.o.colorcolumn = '85'
-vim.o.undodir = os.getenv 'HOME' .. '/.vim/undo' -- where to put backup files
+vim.o.undodir = os.getenv('HOME') .. '/.vim/undo' -- where to put backup files
 vim.o.shell = 'bash'
 vim.o.textwidth = 79
 vim.o.tabstop = 4
@@ -114,3 +114,5 @@ vim.o.scrolloff = 10
 vim.o.confirm = true
 
 -- vim: ts=2 sts=2 sw=2 et
+vim.g.go_def_mode = 'gopls'
+vim.g.go_info_mode = 'gopls'
