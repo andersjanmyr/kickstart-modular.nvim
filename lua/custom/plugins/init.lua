@@ -5,7 +5,6 @@
 return {
   'tpope/vim-fugitive',
   'andersjanmyr/vim-scratch',
-  'ap/vim-css-color',
   'axelf4/vim-strip-trailing-whitespace',
   'editorconfig/editorconfig-vim',
   'godlygeek/tabular',
